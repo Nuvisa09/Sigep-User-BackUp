@@ -1,0 +1,18 @@
+workflows:
+  ios-workflow:
+    name: Build iOS
+    environment:
+      flutter: stable
+      xcode: latest
+    scripts:
+      - name: Update CocoaPods
+        script: |
+          cd ios
+          rm -f Podfile.lock
+          pod repo update
+          pod install
+          cd ..
+      - name: Get dependencies
+        script: flutter pub get
+      - name: Build iOS
+        script: flutter build ipa --release
