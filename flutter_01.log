@@ -1,0 +1,105 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter pub get
+
+## exception
+
+FormatException: FormatException: Unexpected end of input (at character 1)
+
+^
+
+
+```
+#0      _ChunkedJsonParser.fail (dart:convert-patch/convert_patch.dart:1463:5)
+#1      _ChunkedJsonParser.close (dart:convert-patch/convert_patch.dart:497:7)
+#2      _parseJson (dart:convert-patch/convert_patch.dart:36:10)
+#3      JsonDecoder.convert (dart:convert/json.dart:641:36)
+#4      JsonCodec.decode (dart:convert/json.dart:223:41)
+#5      createPluginSymlinks (package:flutter_tools/src/flutter_plugins.dart:1042:14)
+#6      refreshPluginsList (package:flutter_tools/src/flutter_plugins.dart:1189:5)
+<asynchronous suspension>
+#7      FlutterProject.ensureReadyForPlatformSpecificTooling (package:flutter_tools/src/project.dart:379:5)
+<asynchronous suspension>
+#8      PackagesGetCommand.runCommand (package:flutter_tools/src/commands/packages.dart:383:7)
+<asynchronous suspension>
+#9      FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:1563:27)
+<asynchronous suspension>
+#10     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+<asynchronous suspension>
+#11     CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+<asynchronous suspension>
+#12     FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:494:9)
+<asynchronous suspension>
+#13     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+<asynchronous suspension>
+#14     FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:431:5)
+<asynchronous suspension>
+#15     run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:98:11)
+<asynchronous suspension>
+#16     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+<asynchronous suspension>
+#17     main (package:flutter_tools/executable.dart:102:3)
+<asynchronous suspension>
+```
+
+## flutter doctor
+
+```
+[32m[✓][39m Flutter (Channel stable, 3.32.4, on Microsoft Windows [Version
+    10.0.22631.5335], locale en-ID) [1,076ms]
+    [32m•[39m Flutter version 3.32.4 on channel stable at D:\flutter
+    [32m•[39m Upstream repository https://github.com/flutter/flutter.git
+    [32m•[39m Framework revision 6fba2447e9 (5 days ago), 2025-06-12 19:03:56 -0700
+    [32m•[39m Engine revision 8cd19e509d
+    [32m•[39m Dart version 3.8.1
+    [32m•[39m DevTools version 2.45.1
+
+[32m[✓][39m Windows Version (11 Home Single Language 64-bit, 23H2, 2009) [4.9s]
+
+[32m[✓][39m Android toolchain - develop for Android devices (Android SDK version 34.0.0)
+    [18.0s]
+    [32m•[39m Android SDK at D:\Android\Sdk
+    [32m•[39m Platform android-35, build-tools 34.0.0
+    [32m•[39m ANDROID_SDK_ROOT = D:\Android
+    [32m•[39m Java binary at: D:\Android\jbr\bin\java
+      This is the JDK bundled with the latest Android Studio installation on this
+      machine.
+      To manually set the JDK path, use: `flutter config --jdk-dir="path/to/jdk"`.
+    [32m•[39m Java version OpenJDK Runtime Environment (build 21.0.6+-13368085-b895.109)
+    [32m•[39m All Android licenses accepted.
+
+[32m[✓][39m Chrome - develop for the web [291ms]
+    [32m•[39m Chrome at C:\Program Files\Google\Chrome\Application\chrome.exe
+
+[32m[✓][39m Visual Studio - develop Windows apps (Visual Studio Community 2022 17.6.4)
+    [287ms]
+    [32m•[39m Visual Studio at C:\Program Files\Microsoft Visual Studio\2022\Community
+    [32m•[39m Visual Studio Community 2022 version 17.6.33815.320
+    [32m•[39m Windows 10 SDK version 10.0.22000.0
+
+[32m[✓][39m Android Studio (version 2024.3.2) [25ms]
+    [32m•[39m Android Studio at D:\Android
+    [32m•[39m Flutter plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/9212-flutter
+    [32m•[39m Dart plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/6351-dart
+    [32m•[39m Java version OpenJDK Runtime Environment (build 21.0.6+-13368085-b895.109)
+
+[32m[✓][39m VS Code (version 1.101.0) [22ms]
+    [32m•[39m VS Code at C:\Users\ASUS\AppData\Local\Programs\Microsoft VS Code
+    [32m•[39m Flutter extension version 3.112.0
+
+[32m[✓][39m Connected device (3 available) [1,329ms]
+    [32m•[39m Windows (desktop) • windows • windows-x64    • Microsoft Windows [Version
+      10.0.22631.5335]
+    [32m•[39m Chrome (web)      • chrome  • web-javascript • Google Chrome 137.0.7151.104
+    [32m•[39m Edge (web)        • edge    • web-javascript • Microsoft Edge 137.0.3296.83
+
+[32m[✓][39m Network resources [1,825ms]
+    [32m•[39m All expected network resources are available.
+
+[32m•[39m No issues found!
+```
