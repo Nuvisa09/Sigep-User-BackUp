@@ -20,12 +20,17 @@ class ServiceCenterDialog extends StatefulWidget {
   State<ServiceCenterDialog> createState() => _ProductBottomSheetState();
 }
 
+List<bool> isOrderClicked = [];
+
 class _ProductBottomSheetState extends State<ServiceCenterDialog> {
   @override
   void initState() {
     Get.find<CartController>().setInitialCartList(widget.service!);
     Get.find<CartController>().updatePreselectedProvider(null, shouldUpdate: false);
     Get.find<AllSearchController>().searchFocus.unfocus();
+
+    isOrderClicked = List.generate(Get.find<CartController>().initialCartList.length, (index) => false);
+
     super.initState();
   }
 
@@ -168,29 +173,54 @@ class _ProductBottomSheetState extends State<ServiceCenterDialog> {
                                                     ),
                                                   ) : const SizedBox(),
 
-                                                  cartControllerInit.initialCartList[index].quantity > 0 ? Text(
-                                                    cartControllerInit.initialCartList[index].quantity.toString(),
-                                                  ) : const SizedBox(),
-
+                                                  if (cartControllerInit.initialCartList[index].quantity > 0) ...[
+                                                    Text(cartControllerInit.initialCartList[index].quantity.toString()),
+                                                    SizedBox(width: 8),
+                                                  ],
                                                   GestureDetector(
                                                     onTap: (){
-                                                      cartController.updateQuantity(index, true);
-
+                                                      setState(() {
+                                                        isOrderClicked[index] = !isOrderClicked[index];
+                                                        cartController.updateQuantity(index, true);
+                                                      });
                                                     },
-                                                    child: Container(
-                                                      height: 30, width: 30,
-                                                      margin: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall),
-                                                      decoration: BoxDecoration(
-                                                          shape: BoxShape.circle,
-                                                          color:  Theme.of(context).colorScheme.secondary
+                                                    child: AnimatedSwitcher(
+                                                      duration: const Duration(milliseconds: 200),
+                                                      transitionBuilder: (child, animation) => ScaleTransition(scale: animation, child: child),
+                                                      child: cartControllerInit.initialCartList[index].quantity == 0
+                                                        ? Container(
+                                                        key: const ValueKey('OrderText'),
+                                                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                        decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.circular(30),
+                                                          color: Theme.of(context).colorScheme.secondary
+                                                        ),
+                                                        alignment: Alignment.center,
+                                                        child: Text(
+                                                          'Order',
+                                                          style: TextStyle(
+                                                            fontSize: 15,
+                                                            color: Theme.of(context).cardColor,
+                                                            fontWeight: FontWeight.bold,
+                                                            ),
+                                                          ),
+                                                        )
+                                                        : Container(
+                                                          key: const ValueKey('AddIcon'),
+                                                          height: 30,
+                                                          width: 30,
+                                                          decoration: BoxDecoration(
+                                                            shape: BoxShape.circle,
+                                                            color: Theme.of(context).colorScheme.secondary,
+                                                        ),
+                                                        alignment: Alignment.center,
+                                                        child: Icon(
+                                                          Icons.add,
+                                                          size: 15,
+                                                          color: Theme.of(context).cardColor,
+                                                        ),
                                                       ),
-                                                      alignment: Alignment.center,
-                                                      child: Icon(
-                                                        Icons.add ,
-                                                        size: 15,
-                                                        color:Theme.of(context).cardColor,
-                                                      ),
-                                                    ),
+                                                    )
                                                   )
                                                 ]),
                                               ),
@@ -261,23 +291,33 @@ class _ProductBottomSheetState extends State<ServiceCenterDialog> {
                           Expanded(child: CustomButton(
                             height: ResponsiveHelper.isDesktop(context)? 55 : 45,
                             onPressed: cartControllerInit.isButton  ? () async{
-                              // final currentProviderId = cartController.cartList.isNotEmpty
-                              //     ? cartController.cartList.first.providerId
-                              //     : null;
-                              //
-                              // final newProviderId = cartController.selectedProvider?.id
-                              //     ?? widget.providerData?.id
-                              //     ?? "";
-                              //
-                              // if (currentProviderId != null && currentProviderId != newProviderId) {
-                              //   Get.snackbar(
-                              //     'Peringatan',
-                              //     'Tidak bisa menambahkan layanan dari penyedia yang berbeda.',
-                              //     backgroundColor: Colors.redAccent,
-                              //     colorText: Colors.white,
-                              //   );
-                              //   return; // stop proses
-                              // }
+                              if(cartController.cartList.isEmpty){
+                                addToCart = true;
+                              } else if(cartController.cartList.first.subCategoryId != widget.service?.subCategoryId){
+                                Get.dialog(ConfirmationDialog(
+                                  icon: Images.warning,
+                                  title: "are_you_sure_to_reset2".tr,
+                                  description: 'you_have_service_from_other_sub_category'.tr,
+                                  onYesPressed: () async{
+                                    cartController.cartList.clear();
+                                    cartController.update();
+                                    cartController.addDataToCart(); // tambahkan data baru
+                                    await cartController.addMultipleCartToServer(
+                                        providerId: cartController.selectedProvider?.id ?? widget.providerData?.id ?? ""
+                                    );
+                                    await cartController.getCartListFromServer(shouldUpdate: true);
+                                    Get.back(); // tutup dialog
+                                    Get.back(); // tutup dialog service
+                                    Get.find<CheckOutController>().updateState(PageState.orderDetails);
+                                    Get.toNamed(RouteHelper.getCheckoutRoute('cart', 'orderDetails', 'null'));
+                                  },
+                                ));
+                                return; // stop proses di sini, tunggu user konfirmasi
+                              }else{
+                                cartController.addDataToCart();
+                                addToCart = true;
+                              }
+
                               if(addToCart) {
                                 addToCart = false;
                                 await cartController.addMultipleCartToServer(providerId: cartController.selectedProvider?.id ?? widget.providerData?.id ??"");
@@ -285,8 +325,9 @@ class _ProductBottomSheetState extends State<ServiceCenterDialog> {
                                 Get.back();
                                 Get.find<CheckOutController>().updateState(PageState.orderDetails);
                                 Get.toNamed(RouteHelper.getCheckoutRoute('cart','orderDetails','null'));
-                              }
-                            }: null,
+                                }
+                              }: null,
+
 
                             // onPressed: () async {
                             //   await cartController.addMultipleCartToServer(providerId: cartController.selectedProvider?.id ?? widget.providerData?.id ??"");

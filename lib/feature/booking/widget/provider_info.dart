@@ -35,11 +35,11 @@ class ProviderInfo extends StatelessWidget {
         Gaps.verticalGapOf(Dimensions.paddingSizeExtraSmall),
         if(provider?.companyName !=null) Text(provider?.companyName ??"",style:robotoBold.copyWith(fontSize: Dimensions.fontSizeDefault,)),
         Gaps.verticalGapOf(Dimensions.paddingSizeExtraSmall),
-        Text(provider == null ? "no_provider_assigned".tr : provider?.companyPhone ?? "",
-          style:robotoRegular.copyWith(
-            fontSize: provider == null ? Dimensions.fontSizeSmall : Dimensions.fontSizeDefault,
-          ),
-        ),
+        // Text(provider == null ? "no_provider_assigned".tr : provider?.companyPhone ?? "",
+        //   style:robotoRegular.copyWith(
+        //     fontSize: provider == null ? Dimensions.fontSizeSmall : Dimensions.fontSizeDefault,
+        //   ),
+        // ),
         Gaps.verticalGapOf(Dimensions.paddingSizeSmall),
       ]),
     );

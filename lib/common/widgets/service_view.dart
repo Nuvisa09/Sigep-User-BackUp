@@ -1,3 +1,4 @@
+import 'package:demandium/common/widgets/service_widget.dart';
 import 'package:get/get.dart';
 import 'package:demandium/utils/core_export.dart';
 

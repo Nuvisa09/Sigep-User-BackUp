@@ -158,9 +158,15 @@ class ServiceWidgetVertical extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
-                    child: Icon(Icons.add,
-                      color: Get.isDarkMode? Theme.of(context).primaryColorLight : Theme.of(context).primaryColor,
-                      size: Dimensions.paddingSizeExtraLarge,
+                    child: Text(
+                      'Order',
+                      style: TextStyle(
+                        color: Get.isDarkMode
+                            ? Theme.of(context).primaryColorLight
+                            : Theme.of(context).primaryColor,
+                        fontSize: Dimensions.fontSizeLarge,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                   Positioned.fill(child: RippleButton(onTap: () {

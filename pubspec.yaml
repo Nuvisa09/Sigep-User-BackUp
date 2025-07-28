@@ -1,7 +1,7 @@
 name: demandium
 description: A new Flutter application.
 publish_to: 'none' #
-version: 1.0.9+12
+version: 1.0.10+13
 
 environment:
   sdk: ^3.5.3
@@ -100,13 +100,13 @@ flutter:
     - assets/
 
   fonts:
-    - family: Ubuntu
+    - family: Roboto
       fonts:
-        - asset: assets/font/Roboto-Light.ttf
+        - asset: assets/font/ProductSans-Light.ttf
           weight: 300
-        - asset: assets/font/Roboto-Regular.ttf
+        - asset: assets/font/ProductSans-Regular.ttf
           weight: 400
-        - asset: assets/font/Roboto-Medium.ttf
+        - asset: assets/font/ProductSans-Medium.ttf
           weight: 500
-        - asset: assets/font/Roboto-Bold.ttf
+        - asset: assets/font/ProductSans-Bold.ttf
           weight: 700

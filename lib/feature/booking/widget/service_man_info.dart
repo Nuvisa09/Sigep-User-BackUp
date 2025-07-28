@@ -34,8 +34,8 @@ class ServiceManInfo extends StatelessWidget {
           ),
           Gaps.verticalGapOf(Dimensions.paddingSizeExtraSmall),
           Text("${user.firstName ?? ""} ${user.lastName ?? ""}",style:robotoBold.copyWith(fontSize: Dimensions.fontSizeDefault,)),
-          Gaps.verticalGapOf(Dimensions.paddingSizeExtraSmall),
-          Text(user.phone ?? "",style:robotoRegular.copyWith(fontSize: Dimensions.fontSizeDefault,)),
+          // Gaps.verticalGapOf(Dimensions.paddingSizeExtraSmall),
+          // Text(user.phone ?? "",style:robotoRegular.copyWith(fontSize: Dimensions.fontSizeDefault,)),
         ],
       ),
     );

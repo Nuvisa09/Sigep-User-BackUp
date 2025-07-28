@@ -1,9 +1,12 @@
 import 'package:get/get.dart';
 import 'package:demandium/utils/core_export.dart';
 
+import 'not_available_widget.dart';
+
 class ServiceWidget extends StatelessWidget {
   final Service? service;
   const ServiceWidget({super.key, required this.service,});
+
 
   @override
   Widget build(BuildContext context) {

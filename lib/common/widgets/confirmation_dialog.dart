@@ -35,7 +35,7 @@ class ConfirmationDialog extends StatelessWidget {
         child:  widget ??  Column(mainAxisSize: MainAxisSize.min, children: [
 
           Padding(
-            padding: const EdgeInsets.all(Dimensions.paddingSizeLarge),
+            padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),
             child: iconWidget ?? Image.asset(icon!, width: iconSize),
           ),
 
@@ -44,7 +44,8 @@ class ConfirmationDialog extends StatelessWidget {
             child: Text(
               title!, textAlign: TextAlign.center,
               style: robotoMedium.copyWith(
-                  fontSize: Dimensions.fontSizeDefault,
+                  fontSize: Dimensions.fontSizeLarge,
+                  fontWeight: FontWeight.bold,
                   color: Theme.of(context).textTheme.bodyLarge!.color!.withValues(alpha: 0.8)
               ),
             ),
@@ -54,7 +55,7 @@ class ConfirmationDialog extends StatelessWidget {
             padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
             child: Text(description!.tr,
               style: robotoRegular.copyWith(
-                  fontSize: Dimensions.fontSizeSmall,color: Theme.of(context).hintColor),
+                  fontSize: Dimensions.fontSizeSmall,color: Theme.of(context).primaryColorDark),
               textAlign: TextAlign.center,
             ),
           ) : const SizedBox(height: Dimensions.paddingSizeDefault,),

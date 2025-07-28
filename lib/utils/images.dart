@@ -3,7 +3,8 @@ class Images {
   static String get logoPrisma => 'prisma'.png;
   static String get webAppbarLogo => 'webAppbarLogo'.png;
   static String get placeholder => 'placeholder'.jpg;
-  static String get emptyService => 'empty_service'.png;
+  // static String get emptyService => 'empty_service'.jpg;
+  static String get emptyService => 'empty_service'.json;
   static String get emptyProvider => 'empty_provider'.png;
   static String get emptySearchService => 'empty_search_service'.png;
   static String get emptyCart => 'empty_cart'.png;

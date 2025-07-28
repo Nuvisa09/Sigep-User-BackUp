@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:demandium/utils/core_export.dart';
+import 'package:demandium/common/widgets/smart_asset_widget.dart';
+
 
 enum NoDataType {
   cart, notification, order, coupon, others, home, offers, address, bookings,search, service,inbox, categorySubcategory,transaction, provider
@@ -20,30 +22,34 @@ class NoDataScreen extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(MediaQuery.of(context).size.height*0.03),
             decoration: const BoxDecoration(
-              shape: BoxShape.circle,
+                shape: BoxShape.circle
             ),
-            child: Image.asset((type == NoDataType.cart || type == NoDataType.order) ? Images.emptyCart:
-            type == NoDataType.coupon ? Images.emptyCoupon:
-            type == NoDataType.notification ? Images.emptyNotification:
-            type == NoDataType.address ? Images.emptyAddress:
-            type == NoDataType.bookings ? Images.emptyBooking:
-            type == NoDataType.service ? Images.emptyService:
-            type == NoDataType.search ? Images.emptySearchService:
-            type == NoDataType.provider ? Images.emptyProvider:
-            type == NoDataType.inbox ? Images.chatImage:
-            type == NoDataType.transaction ? Images.emptyTransaction:
-            type == NoDataType.offers ? Images.emptyOffer:Images.emptyService,
-              width: type == NoDataType.coupon ? 50.0:MediaQuery.of(context).size.height*0.1 ,
-              height:type == NoDataType.coupon ? 50.0: MediaQuery.of(context).size.height*0.1,
+            child: SmartAssetWidget(
+              assetPath:
+              (type == NoDataType.cart || type == NoDataType.order) ? Images.emptyCart :
+              type == NoDataType.coupon ? Images.emptyCoupon :
+              type == NoDataType.notification ? Images.emptyNotification :
+              type == NoDataType.address ? Images.emptyAddress :
+              type == NoDataType.bookings ? Images.emptyBooking :
+              type == NoDataType.service ? Images.emptyService :
+              type == NoDataType.search ? Images.emptySearchService :
+              type == NoDataType.provider ? Images.emptyProvider :
+              type == NoDataType.inbox ? Images.chatImage :
+              type == NoDataType.transaction ? Images.emptyTransaction :
+              type == NoDataType.offers ? Images.emptyOffer :
+              Images.emptyService,
+              width: type == NoDataType.coupon ? 50.0 : type == NoDataType.service ? MediaQuery.of(context).size.height * 0.1 : MediaQuery.of(context).size.height * 0.03,
+              height: type == NoDataType.coupon ? 50.0 : type == NoDataType.service ? MediaQuery.of(context).size.height * 0.1 :  MediaQuery.of(context).size.height * 0.3,
               color: Get.isDarkMode && (
                   type == NoDataType.bookings ||
-                  type == NoDataType.home ||
-                  type == NoDataType.service ||
-                  type == NoDataType.categorySubcategory ||
-                  type == NoDataType.notification
-              ) ? Theme.of(context).primaryColorLight:null,
+                      type == NoDataType.home ||
+                      type == NoDataType.service ||
+                      type == NoDataType.categorySubcategory ||
+                      type == NoDataType.notification
+              ) ? Theme.of(context).primaryColorLight : null,
             ),
-      ),
+
+          ),
       Padding( padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault),
         child: Text(
           type == NoDataType.cart ? 'your_cart_is_empty'.tr :

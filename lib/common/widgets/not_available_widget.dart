@@ -6,6 +6,7 @@ class NotAvailableWidget extends StatelessWidget {
   final double? fontSize;
   final BorderRadius? borderRadius;
   const NotAvailableWidget({super.key, required this.online, this.fontSize = 8, this.borderRadius});
+  
 
   @override
   Widget build(BuildContext context) {
