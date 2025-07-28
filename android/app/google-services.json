@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1058475941726",
+    "project_id": "orderjasa-7643c",
+    "storage_bucket": "orderjasa-7643c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058475941726:android:4a4ab5b6ce9158e31bf9cf",
+        "android_client_info": {
+          "package_name": "com.sigep2.user"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmiHI0EG6Kcp60RtL33Yg9uSiuI6Z_ntU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
